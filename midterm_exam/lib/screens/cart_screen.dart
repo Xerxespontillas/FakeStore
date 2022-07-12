@@ -35,22 +35,22 @@ ApiService get service => GetIt.instance<ApiService>();
             itemBuilder: (_, index) {
               final product = products[index];
               return FutureBuilder(
-                future: service.getProduct(product.productId),
+                future: service.getProduct(product['productId']),
                 builder: (BuildContext context,
                     AsyncSnapshot<Product?> productSnapshot) {
                   if (!productSnapshot.hasData) {
                     return const LinearProgressIndicator();
                   }
 
-                  final p = productSnapshot.data;
-                  if (p == null) {
+                  final products = productSnapshot.data;
+                  if (products == null) {
                     return const Text('No product found');
                   }
 
                   return ListTile(
-                    title: Text(p.title),
+                    title: Text(products.title),
                     leading: Image.network(
-                      '[image]',
+                       products.image ?? '',
                       height: 40,
                     ),
                     subtitle: Text(

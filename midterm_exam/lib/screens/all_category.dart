@@ -5,6 +5,7 @@ import '../services/api_service.dart';
 
 class AllCategoryScreen extends StatelessWidget {
   const AllCategoryScreen({Key? key}) : super(key: key);
+  
   ApiService get service => GetIt.instance<ApiService>();
 
   @override
