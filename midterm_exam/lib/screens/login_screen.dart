@@ -7,11 +7,10 @@ import 'home.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-ApiService get service => GetIt.I<ApiService>();
+ApiService get service => GetIt.instance<ApiService>();
   final TextEditingController nameCtrl = TextEditingController(
     text: 'mor_2314',
   );
-
   final TextEditingController passwordCtrl = TextEditingController(
     text: '83r5^_',
   );

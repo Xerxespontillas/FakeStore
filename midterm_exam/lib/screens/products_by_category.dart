@@ -6,7 +6,7 @@ import 'product_detail.dart';
 
 class ProductsByCategoryScreen extends StatelessWidget {
   final String categoryName;
- ApiService get service => GetIt.I<ApiService>();
+ ApiService get service => GetIt.instance<ApiService>();
   const ProductsByCategoryScreen({Key? key, required this.categoryName})
       : super(key: key);
 

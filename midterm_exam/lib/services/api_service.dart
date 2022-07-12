@@ -46,7 +46,7 @@ Future<List<Product>> getProductsByCategory(String categoryName) {
         }
       }
       return products;
-    }).catchError((err) => print(err));
+    }).catchError((err) =>  print('Error Occurred'));
   }
 
  Future<List<String>> getAllCategories() {
@@ -70,7 +70,7 @@ Future<List<Product>> getProductsByCategory(String categoryName) {
         return Product.fromJson(jsonData);
       }
       return null;
-    }).catchError((err) => print(err));
+    }).catchError((err) =>  print('Error Occurred'));
   }
   
     Future<Cart?> getCart(String id) {
@@ -95,7 +95,7 @@ Future<List<Product>> getProductsByCategory(String categoryName) {
         final jsonData = json.decode(data.body);
         print(jsonData);
       }
-    }).catchError((err) => print(err));
+    }).catchError((err) =>  print('Error Occurred'));
   }
 
   Future<void> deleteCart(String cartId) {
@@ -104,7 +104,7 @@ Future<List<Product>> getProductsByCategory(String categoryName) {
         final jsonData = json.decode(data.body);
         print(jsonData);
       }
-    }).catchError((err) => print(err));
+    }).catchError((err) =>  print('Error Occurred'));
   }
 
 }

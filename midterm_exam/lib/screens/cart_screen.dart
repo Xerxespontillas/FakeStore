@@ -6,7 +6,7 @@ import '../services/api_service.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
-ApiService get service => GetIt.I<ApiService>();
+ApiService get service => GetIt.instance<ApiService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

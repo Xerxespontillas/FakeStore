@@ -5,10 +5,10 @@ import '../services/api_service.dart';
 import 'all_category.dart';
 import 'cart_screen.dart';
 import 'product_detail.dart';
- ApiService get service => GetIt.I<ApiService>();
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
+ ApiService get service => GetIt.I<ApiService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
