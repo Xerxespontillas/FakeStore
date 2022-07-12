@@ -3,6 +3,7 @@ import '../models/product.dart';
 import 'package:fake_store/models/login.dart';
 import 'package:http/http.dart' as http;
 import'package:fake_store/models/cart.dart';
+import 'package:fake_store/models/updating_cart';
 class ApiService {
   static const baseUrl = 'https://fakestoreapi.com/';
 
