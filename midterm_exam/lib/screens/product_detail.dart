@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_it/get_it.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key, required this.id}) : super(key: key);
+ ApiService get service => GetIt.I<ApiService>();
+ final int id;
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'dart:convert';
 import '../models/product.dart';
 import 'package:fake_store/models/login.dart';
 import 'package:http/http.dart' as http;
-
+import'package:fake_store/models/cart.dart';
 class ApiService {
   static const baseUrl = 'https://fakestoreapi.com/';
 
@@ -58,7 +58,15 @@ class ApiService {
         }
       }
       return products;
-    }).catchError((err) => print(err));
+    }).catchError((err) => print('Error Occurred'));
   }
-  
+    Future<Cart?> getCart(String id) {
+    return http.get(Uri.parse('$baseUrl/carts/$id')).then((data) {
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        return Cart.fromJson(jsonData);
+      }
+      return null;
+    }).catchError((err) => print('Error Occurred'));
+  }
 }
