@@ -17,7 +17,7 @@ class ProductDetailScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(20),
         child: FutureBuilder(
-          future: getProduct(id),
+          future: service.getProduct(id),
           builder: (BuildContext context, AsyncSnapshot<Product?> snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());

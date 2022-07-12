@@ -69,4 +69,15 @@ class ApiService {
       return null;
     }).catchError((err) => print('Error Occurred'));
   }
+
+  Future<Product?> getProduct(int id) {
+    return http.get(Uri.parse('$baseUrl/products/$id')).then((data) {
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        return Product.fromJson(jsonData);
+      }
+      return null;
+    }).catchError((err) => print(err));
+  }
+
 }
