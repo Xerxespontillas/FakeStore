@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_it/get_it.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 import 'all_category.dart';
 import 'cart_screen.dart';
 import 'product_detail.dart';
-
+ ApiService get service => GetIt.I<ApiService>();
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: FutureBuilder(
-            future: getAllProduct(),
+            future: service.getAllProduct(),
             builder: (_, AsyncSnapshot<List<Product>> snapshot) {
               if (!snapshot.hasData) {
                 return const CircularProgressIndicator();
