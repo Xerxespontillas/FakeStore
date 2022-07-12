@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 import '../services/api_service.dart';
-import 'all_category.dart';
-import 'cart_screen.dart';
-import 'product_detail.dart';
+//import 'all_category.dart';
+//import 'cart_screen.dart';
+//import 'product_detail.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
