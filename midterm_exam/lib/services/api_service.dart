@@ -16,10 +16,10 @@ class ApiService {
         final jsonData = json.decode(data.body);
         return jsonData;
       }
-    }).catchError((err) => print(err));
+    }).catchError((err) => print('Error Occurred'));
 }
 
- Future<List<Product>> getAllProducts() async {
+ Future<List<Product>> getAllProduct() async {
     return http.get(Uri.parse('$baseUrl/products')).then((data) {
       final products = <Product>[];
       if (data.statusCode == 200) {
@@ -30,7 +30,21 @@ class ApiService {
         }
       }
       return products;
-    }).catchError((err) => print(err));
+    }).catchError((err) => print('Error Occurred'));
   }
 
+
+ Future<List<String>> getAllCategories() {
+    return http.get(Uri.parse('$baseUrl/products/categories')).then((data) {
+      final categories = <String>[];
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+
+        for (var category in jsonData) {
+          categories.add(category);
+        }
+      }
+      return categories;
+    }).catchError((err) => print('Error Occurred'));
+  }
 }

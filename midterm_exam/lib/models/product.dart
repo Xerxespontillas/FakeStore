@@ -1,36 +1,39 @@
-import 'package:flutter/cupertino.dart';
+class Product {
+  int id;
+  String title;
+  double price;
+  String? description;
+  String? image;
+  String? category;
 
-class Product{
+  Product({
+    required this.id,
+    required this.title,
+    required this.price,
+    this.description,
+    this.image,
+    this.category,
+  });
 
-int id;
-String title;
-int price;
-String  category;
-String  description;
- String  image;
+  factory Product.fromJson(Map<String, dynamic> data) {
+    return Product(
+      id: data['id'] as int,
+      title: data['title'],
+      price: double.parse(data['price'].toString()),
+      description: data['description'],
+      image: data['image'],
+      category: data['category'],
+    );
+  }
 
- Product({
-  required this.id,
-  required this.title,
-  required this.price,
-  required this.category,
-  required this.description,
-  required this.image,
-
- });
-
- factory Product.fromJson(Map<String, dynamic> item){
-
-  return Product(
-    id: item['id'],
-    title: item['title'],
-    price: item['price'],
-    category: item['category'],
-      description: item['description'],
-      image: item['image'],
-  );
-
-  
- }
-
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'price': price,
+      'description': description,
+      'image': image,
+      'category': category,
+    };
+  }
 }
