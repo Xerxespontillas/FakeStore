@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_it/get_it.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 import 'product_detail.dart';
 
 class ProductsByCategoryScreen extends StatelessWidget {
   final String categoryName;
-
+ ApiService get service => GetIt.I<ApiService>();
   const ProductsByCategoryScreen({Key? key, required this.categoryName})
       : super(key: key);
 
@@ -19,7 +19,7 @@ class ProductsByCategoryScreen extends StatelessWidget {
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder(
-        future: getProductsByCategory(categoryName),
+        future: service.getProductsByCategory(categoryName),
         builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
