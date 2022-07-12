@@ -1,5 +1,4 @@
 import 'dart:convert';
-import '../models/api_response.dart';
 import '../models/product.dart';
 import 'package:fake_store/models/login.dart';
 import 'package:http/http.dart' as http;
