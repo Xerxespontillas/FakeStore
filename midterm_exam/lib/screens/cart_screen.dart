@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_it/get_it.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
-
+ApiService get service => GetIt.instance<ApiService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder(
-        future: getCart('1'),
+        future: service.getCart('1'),
         builder: (BuildContext context, AsyncSnapshot<Cart?> cartSnapshot) {
           if (!cartSnapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
@@ -35,31 +35,31 @@ class CartScreen extends StatelessWidget {
             itemBuilder: (_, index) {
               final product = products[index];
               return FutureBuilder(
-                future: getProduct(product.productId),
+                future: service.getProduct(product['productId']),
                 builder: (BuildContext context,
                     AsyncSnapshot<Product?> productSnapshot) {
                   if (!productSnapshot.hasData) {
                     return const LinearProgressIndicator();
                   }
 
-                  final p = productSnapshot.data;
-                  if (p == null) {
+                  final products = productSnapshot.data;
+                  if (products == null) {
                     return const Text('No product found');
                   }
 
                   return ListTile(
-                    title: Text(p.title),
+                    title: Text(products.title),
                     leading: Image.network(
-                      '[image]',
+                       products.image ?? '',
                       height: 40,
                     ),
                     subtitle: Text(
-                      'Quantity: '[$quantity]',
+                      'Quantity: ${product['quantity']}',
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () async {
-                        await deleteCart('1');
+                        await service.deleteCart('1');
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Cart deleted successfully.'),
