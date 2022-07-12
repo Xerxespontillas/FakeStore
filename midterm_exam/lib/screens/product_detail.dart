@@ -5,8 +5,9 @@ import '../services/api_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key, required this.id}) : super(key: key);
-ApiService get service => GetIt.I<ApiService>();
-final id;
+ ApiService get service => GetIt.I<ApiService>();
+ final int id;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +72,7 @@ final id;
                     backgroundColor: Colors.blueGrey,
                   ),
                   const SizedBox(height: 30),
-                  Text(product.description),
+                  Text(product.description ?? ''),
                 ],
               ),
             );
@@ -81,7 +82,7 @@ final id;
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () async {
-          await updateCart(1, id);
+          await service.updateCart(1, id);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Product added to cart'),
