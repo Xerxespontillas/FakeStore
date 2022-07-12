@@ -1,3 +1,9 @@
+ import 'package:json_annotation/json_annotation.dart';
+
+ part 'updating_cart.g.dart';
+@JsonSerializable()
+
+
 class CartUpdate {
   int? id;
   int userId;
