@@ -48,7 +48,7 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '\$$price',
+                    '\$${product.price}',
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
