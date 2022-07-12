@@ -53,9 +53,10 @@ class ApiService {
         final jsonData = json.decode(data.body);
         return Product.fromJson(jsonData);
       }
-      return products;
-    }).catchError((err) => print('Error Occurred'));
+      return null;
+    }).catchError((err) => print(err));
   }
+  
     Future<Cart?> getCart(String id) {
     return http.get(Uri.parse('$baseUrl/carts/$id')).then((data) {
       if (data.statusCode == 200) {
