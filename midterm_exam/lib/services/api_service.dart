@@ -46,18 +46,14 @@ class ApiService {
       return categories;
     }).catchError((err) => print('Error Occurred'));
   }
-
-  Future<List<Product>> getAllProducts() async {
-    return http.get(Uri.parse('$baseUrl/products')).then((data) {
-      final products = <Product>[];
+  
+ Future<Product?> getProduct(int id) {
+    return http.get(Uri.parse('$baseUrl/products/$id')).then((data) {
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
-
-        for (var product in jsonData) {
-          products.add(Product.fromJson(product));
-        }
+        return Product.fromJson(jsonData);
       }
-      return products;
+      return null;
     }).catchError((err) => print(err));
   }
   

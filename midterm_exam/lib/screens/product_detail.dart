@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_it/get_it.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key, required this.id}) : super(key: key);
-
+ApiService get service => GetIt.I<ApiService>();
+final id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +16,7 @@ class ProductDetailScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(20),
         child: FutureBuilder(
-          future: getProduct(id),
+          future: service.getProduct(id),
           builder: (BuildContext context, AsyncSnapshot<Product?> snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());
@@ -46,7 +47,7 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '\$$price',
+                    '\$${product.price}',
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
