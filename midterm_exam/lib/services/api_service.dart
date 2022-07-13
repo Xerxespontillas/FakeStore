@@ -9,15 +9,15 @@ class ApiService {
   static const baseUrl = 'https://fakestoreapi.com';
 
   Future<dynamic> login(String username, String password) {
-    final credentials = Login(username: username, password: password);
+    final Auth = Login(username: username, password: password);
     return http
-        .post(Uri.parse('$baseUrl/auth/login'), body: credentials.toJson())
+        .post(Uri.parse('$baseUrl/auth/login'), body: Auth.toJson())
         .then((data) {
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
         return jsonData;
       }
-    }).catchError((err) =>print(err));
+    }).catchError((err) =>print('Error Occurred'));
   }
 
  Future<List<Product>> getAllProduct() async {
